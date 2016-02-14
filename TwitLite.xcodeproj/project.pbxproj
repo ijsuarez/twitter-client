@@ -12,12 +12,12 @@
 		684FBAD61C71084B00C422E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684FBAD41C71084B00C422E1 /* Main.storyboard */; };
 		684FBAD81C71084B00C422E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 684FBAD71C71084B00C422E1 /* Assets.xcassets */; };
 		684FBADB1C71084B00C422E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 684FBAD91C71084B00C422E1 /* LaunchScreen.storyboard */; };
-		8A848899022EB9C5760C2351 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F33184FD7657B0111CB1FA /* libPods.a */; };
+		685D916F1C710A9800304DE4 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685D916E1C710A9800304DE4 /* TwitterClient.swift */; };
+		B209E566B0C27895ADF70716 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF955444B2F5A65F99B7DCC6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33B373E3AD2B659235625BF6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		39F33184FD7657B0111CB1FA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		684FBACD1C71084B00C422E1 /* TwitLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		684FBAD01C71084B00C422E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		684FBAD21C71084B00C422E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +25,9 @@
 		684FBAD71C71084B00C422E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		684FBADA1C71084B00C422E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		684FBADC1C71084B00C422E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		685D916E1C710A9800304DE4 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		9518B7645D12E9A9C19CC4B6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AF955444B2F5A65F99B7DCC6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A848899022EB9C5760C2351 /* libPods.a in Frameworks */,
+				B209E566B0C27895ADF70716 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +69,7 @@
 				684FBAD71C71084B00C422E1 /* Assets.xcassets */,
 				684FBAD91C71084B00C422E1 /* LaunchScreen.storyboard */,
 				684FBADC1C71084B00C422E1 /* Info.plist */,
+				685D916E1C710A9800304DE4 /* TwitterClient.swift */,
 			);
 			path = TwitLite;
 			sourceTree = "<group>";
@@ -74,7 +77,7 @@
 		A2C451013DAB76936C26EC34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				39F33184FD7657B0111CB1FA /* libPods.a */,
+				AF955444B2F5A65F99B7DCC6 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				684FBAD31C71084B00C422E1 /* ViewController.swift in Sources */,
+				685D916F1C710A9800304DE4 /* TwitterClient.swift in Sources */,
 				684FBAD11C71084B00C422E1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
