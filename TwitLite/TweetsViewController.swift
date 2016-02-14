@@ -10,10 +10,14 @@ import UIKit
 
 class TweetsViewController: UIViewController {
 
+    var tweets: [Tweet]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            self.tweets = tweets
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +26,10 @@ class TweetsViewController: UIViewController {
     }
     
 
+    @IBAction func onLogout(sender: AnyObject) {
+        User.currentUser?.logout()
+    }
+    
     /*
     // MARK: - Navigation
 
