@@ -11,6 +11,7 @@ import UIKit
 class Tweet: NSObject {
     var user: User?
     var id: Int?
+    var originalId: Int?
     var text: String?
     var retweets: Int?
     var favorites: Int?
@@ -31,6 +32,7 @@ class Tweet: NSObject {
         
         if let retweetMetadata = dictionary["retweeted_status"] as? NSDictionary {
             favorites = retweetMetadata["favorite_count"] as? Int
+            originalId = retweetMetadata["id"] as? Int
         }
         
         let formatter = NSDateFormatter()

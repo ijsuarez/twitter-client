@@ -60,20 +60,20 @@ class TweetCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if (tweet.isRetweeted != nil && !tweet.isRetweeted!) {
-            tapRetweet.addTarget(self, action: "retweet")
-            retweetImage.addGestureRecognizer(tapRetweet)
-            retweetImage.userInteractionEnabled = true;
-        } else if (tweet.isRetweeted != nil && tweet.isRetweeted!) {
+        tapRetweet.addTarget(self, action: "retweet")
+        retweetImage.addGestureRecognizer(tapRetweet)
+        retweetImage.userInteractionEnabled = true;
+        
+        tapFavorite.addTarget(self, action: "favorite")
+        favoriteImage.addGestureRecognizer(tapFavorite)
+        favoriteImage.userInteractionEnabled = true;
+
+        if (tweet.isRetweeted != nil && tweet.isRetweeted!) {
             retweetImage.image = UIImage(named: "RetweetIcon-Active")
             retweetCount.textColor = UIColor.greenColor()
         }
         
-        if (tweet.isFavorited != nil && !tweet.isFavorited!) {
-            tapFavorite.addTarget(self, action: "favorite")
-            favoriteImage.addGestureRecognizer(tapFavorite)
-            favoriteImage.userInteractionEnabled = true;
-        } else if (tweet.isFavorited != nil && tweet.isFavorited!) {
+        if (tweet.isFavorited != nil && tweet.isFavorited!) {
             favoriteImage.image = UIImage(named: "FavoriteIcon-Active")
             favoriteCount.textColor = UIColor.redColor()
         }
@@ -88,8 +88,18 @@ class TweetCell: UITableViewCell {
             retweetCount.text = String(tweet.retweets!+1)
             retweetCount.textColor = UIColor.greenColor()
             retweetCount.hidden = false
+            tweet.isRetweeted = true
         } else if (tweet.isRetweeted != nil && tweet.isRetweeted!) {
-        
+            TwitterClient.sharedInstance.untweetWithTweetId(tweet.originalId!)
+            retweetImage.image = UIImage(named: "RetweetIcon")
+            retweetCount.text = String(tweet.retweets!)
+            retweetCount.textColor = UIColor.grayColor()
+            if tweet.retweets > 0 {
+                retweetCount.hidden = false
+            } else {
+                retweetCount.hidden = true
+            }
+            tweet.isRetweeted = false
         }
     }
     
@@ -100,8 +110,18 @@ class TweetCell: UITableViewCell {
             favoriteCount.text = String(tweet.favorites!+1)
             favoriteCount.textColor = UIColor.redColor()
             favoriteCount.hidden = false
+            tweet.isFavorited = true
         } else if (tweet.isFavorited != nil && tweet.isFavorited!) {
-            
+            TwitterClient.sharedInstance.unfavoriteWithTweetId(tweet.id!)
+            favoriteImage.image = UIImage(named: "FavoriteIcon")
+            favoriteCount.text = String(tweet.favorites!)
+            favoriteCount.textColor = UIColor.grayColor()
+            if tweet.favorites > 0 {
+                favoriteCount.hidden = false
+            } else {
+                favoriteCount.hidden = true
+            }
+            tweet.isFavorited = false
         }
     }
 

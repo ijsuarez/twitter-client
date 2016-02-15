@@ -32,11 +32,35 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func untweetWithTweetId(id: Int) {
+        GET("1.1/statuses/show.json?id=\(String(id))", parameters: ["include_my_retweet" : true], success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            //print("home timeline: \(response)")
+            let tweet = response as! NSDictionary
+            let currentUserRetweetId = tweet["current_user_retweet"]!["id"] as! Int
+            
+            self.POST("1.1/statuses/destroy/\(String(currentUserRetweetId)).json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+                print("successful untweet")
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("failed untweet")
+            })
+        }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+            print("error getting tweet id")
+        })
+    }
+    
     func favoriteWithTweetId(id: Int) {
         POST("1.1/favorites/create.json?id=\(String(id))", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             print("successful favorite")
         }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
             print("failed favorite")
+        })
+    }
+    
+    func unfavoriteWithTweetId(id: Int) {
+        POST("1.1/favorites/destroy.json?id=\(String(id))", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("successful defavorite")
+        }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+            print("failed defavorite")
         })
     }
     
