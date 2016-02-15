@@ -24,6 +24,22 @@ class TwitterClient: BDBOAuth1SessionManager {
         return Static.instance
     }
     
+    func retweetWithTweetId(id: Int) {
+        POST("1.1/statuses/retweet/\(String(id)).json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("successful retweet")
+        }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+            print("failed retweet")
+        })
+    }
+    
+    func favoriteWithTweetId(id: Int) {
+        POST("1.1/favorites/create.json?id=\(String(id))", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("successful favorite")
+        }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+            print("failed favorite")
+        })
+    }
+    
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             //print("home timeline: \(response)")

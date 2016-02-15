@@ -74,12 +74,12 @@
 				685D91701C711E0200304DE4 /* API */,
 				685D91711C711E0900304DE4 /* Models */,
 				684FBAD01C71084B00C422E1 /* AppDelegate.swift */,
+				685D91761C712E3B00304DE4 /* TweetsViewController.swift */,
 				684FBAD21C71084B00C422E1 /* ViewController.swift */,
 				684FBAD41C71084B00C422E1 /* Main.storyboard */,
 				684FBAD71C71084B00C422E1 /* Assets.xcassets */,
 				684FBAD91C71084B00C422E1 /* LaunchScreen.storyboard */,
 				684FBADC1C71084B00C422E1 /* Info.plist */,
-				685D91761C712E3B00304DE4 /* TweetsViewController.swift */,
 				685D91781C7150AB00304DE4 /* TweetCell.swift */,
 			);
 			path = TwitLite;
