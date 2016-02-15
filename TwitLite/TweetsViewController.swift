@@ -7,17 +7,30 @@
 //
 
 import UIKit
+import AFNetworking
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userImage: UIImageView!
+    
     var tweets: [Tweet]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
         })
+        
+        let currentUser = User.currentUser
+        print(currentUser?.profileImageUrl)
+        
+        userImage.setImageWithURL(NSURL(string: currentUser!.profileImageUrl!)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +41,15 @@ class TweetsViewController: UIViewController {
 
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        return cell
     }
     
     /*
