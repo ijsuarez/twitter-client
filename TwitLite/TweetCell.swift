@@ -16,9 +16,29 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var tweetContent: UILabel!
     
+    var tweet : Tweet! {
+        didSet {
+            username.text = tweet.user!.name
+            userHandle.text = "@\(tweet.user!.screenname!)"
+            tweetContent.text = tweet.text
+            print(tweet.text)
+            profileImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!)!)
+            
+            let calendar = NSCalendar.currentCalendar()
+            let comp = calendar.components([.Month, .Day, .Year], fromDate: tweet.createdAt!)
+            
+            timestamp.text = "\(comp.month)/\(comp.day)/\(comp.year)"
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tweetContent.preferredMaxLayoutWidth = tweetContent.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
