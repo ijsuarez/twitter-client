@@ -100,7 +100,7 @@ class TweetCell: UITableViewCell {
                 self.tweet = tempTweet
             })
         } else if (tweet.isRetweeted != nil && tweet.isRetweeted!) {
-            TwitterClient.sharedInstance.untweetWithTweetId(tweet.id!, completion: { (tweet, error) -> () in
+            TwitterClient.sharedInstance.untweetWithTweetId(tweet.originalId!, completion: { (tweet, error) -> () in
                 let tempTweet = self.tweet
                 tempTweet.retweets!--
                 tempTweet.isRetweeted = false
