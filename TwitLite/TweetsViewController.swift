@@ -39,6 +39,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         userImage.clipsToBounds = true
         userImageBorder.layer.cornerRadius = 8.0
         userImageBorder.clipsToBounds = true
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            print("reloading data")
+            self.tweets = tweets
+            self.tableView.reloadData()
+        })
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
