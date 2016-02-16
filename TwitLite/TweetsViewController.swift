@@ -13,6 +13,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageBorder: UIView!
     
     var tweets: [Tweet]!
     
@@ -34,6 +35,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         print(currentUser?.profileImageUrl)
         
         userImage.setImageWithURL(NSURL(string: currentUser!.profileImageUrl!)!)
+        userImage.layer.cornerRadius = 8.0
+        userImage.clipsToBounds = true
+        userImageBorder.layer.cornerRadius = 8.0
+        userImageBorder.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {

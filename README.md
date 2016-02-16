@@ -2,7 +2,7 @@
 
 TwitLite is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **10** hours spent in total
+Time spent: **11** hours spent in total
 
 ## User Stories
 
@@ -41,7 +41,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-I had some challenges properly parsing out the API. Right now there's a strange bug when trying to untweet my own retweets, but untweeting tweets that I have retweeted and that have been retweeted by others works fine.
+I had some challenges properly parsing out the API. ~Right now there's a strange bug when trying to untweet my own retweets, but untweeting tweets that I have retweeted and that have been retweeted by others works fine.~ Fixed retweet error yayy.
 
 ## License
 
