@@ -88,6 +88,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func homeTimelineUpdate(max_id: Int, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        let params = ["max_id" : max_id]
+        GET("1.1/statuses/home_timeline.json", parameters: params, progress: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            completion(tweets: tweets, error: nil)
+        }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+            print("error getting timeline update")
+            completion(tweets: nil, error: error)
+        })
+    }
+    
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         loginCompletion = completion
         

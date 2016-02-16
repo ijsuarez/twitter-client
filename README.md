@@ -2,7 +2,7 @@
 
 TwitLite is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **11** hours spent in total
+Time spent: **12** hours spent in total
 
 ## User Stories
 
@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 - [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
 - [x] User can pull to refresh.
 

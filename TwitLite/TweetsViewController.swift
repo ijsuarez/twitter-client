@@ -9,13 +9,14 @@
 import UIKit
 import AFNetworking
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userImageBorder: UIView!
     
     var tweets: [Tweet]!
+    var isMoreDataLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,30 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.tweet = tweets[indexPath.row]
 
         return cell
+    }
+    
+    func loadMoreData() {
+        let max_id = tweets[tweets.count].id!
+        TwitterClient.sharedInstance.homeTimelineUpdate(max_id, completion: { (tweets, error) -> () in
+            print("updating data")
+            if tweets != nil {
+                self.tweets.appendContentsOf(tweets!)
+                self.isMoreDataLoading = false
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - (2 * tableView.bounds.size.height)
+            
+            if (scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                loadMoreData()
+            }
+        }
     }
     
     /*
