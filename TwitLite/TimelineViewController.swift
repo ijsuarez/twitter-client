@@ -9,7 +9,7 @@
 import UIKit
 import AFNetworking
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
@@ -54,6 +54,22 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
+        }
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
+            self.tableView.reloadData()
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            print("rotation completed")
+        })
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
@@ -124,14 +140,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweet = tweets[indexPath!.row]
+        
+        let tweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
+        tweetDetailViewController.tweet = tweet
     }
-    */
 
 }
