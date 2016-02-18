@@ -104,6 +104,10 @@ class TweetDetailViewController: UIViewController {
         }
     }
     
+    func profileDetailSegue() {
+        performSegueWithIdentifier("ProfileDetailSegue", sender: tweet.user)
+    }
+    
     func retweet() {
         if (tweet.isRetweeted != nil && !tweet.isRetweeted!) {
             TwitterClient.sharedInstance.retweetWithTweetId(tweet.id!, completion: { (tweet, error) -> () in
@@ -157,6 +161,9 @@ class TweetDetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let user = sender as! User
+        let profileDetailViewController = segue.destinationViewController as! ProfileDetailViewController
+        profileDetailViewController.user = user
     }
 
 }

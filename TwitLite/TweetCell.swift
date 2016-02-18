@@ -96,7 +96,6 @@ class TweetCell: UITableViewCell {
     }
     
     func profileDetailSegue() {
-        print("hi")
         NSNotificationCenter.defaultCenter().postNotificationName("profileDetailNotification", object: nil, userInfo: ["user" : tweet.user!])
     }
     

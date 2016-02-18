@@ -163,7 +163,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             tweetDetailViewController.tweet = tweet
         } else if segue.identifier == "ProfileDetailSegue" {
             let user = sender as! User
-            print(user.name)
+            let profileDetailViewController = segue.destinationViewController as! ProfileDetailViewController
+            profileDetailViewController.user = user
         }
     }
 

@@ -253,7 +253,7 @@
         <!--Profile Detail-->
         <scene sceneID="4ag-QQ-wjm">
             <objects>
-                <viewController id="llc-b7-BUm" sceneMemberID="viewController">
+                <viewController title="Profile Detail" id="llc-b7-BUm" customClass="ProfileDetailViewController" customModule="TwitLite" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Var-KH-iCz"/>
                         <viewControllerLayoutGuide type="bottom" id="w1a-Ju-Ddj"/>
@@ -261,9 +261,127 @@
                     <view key="view" contentMode="scaleToFill" id="E4g-5D-pfs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4or-cp-CRe">
+                                <rect key="frame" x="0.0" y="64" width="320" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="vU7-ij-eST"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5Z-ET-a5t">
+                                <rect key="frame" x="8" y="133" width="72" height="72"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o1M-3p-drB">
+                                        <rect key="frame" x="2" y="2" width="68" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="68" id="9cq-X3-Xw6"/>
+                                            <constraint firstAttribute="height" constant="68" id="OGE-k2-wFR"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="RO1-Nd-cLc"/>
+                                    <constraint firstItem="o1M-3p-drB" firstAttribute="centerY" secondItem="f5Z-ET-a5t" secondAttribute="centerY" id="VeK-Xa-3A4"/>
+                                    <constraint firstAttribute="height" constant="72" id="xZm-DV-e3f"/>
+                                    <constraint firstItem="o1M-3p-drB" firstAttribute="centerX" secondItem="f5Z-ET-a5t" secondAttribute="centerX" id="zue-2e-Tkj"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIDEO_KOJIMA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcz-rN-yah">
+                                <rect key="frame" x="8" y="213" width="106" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@HIDEO_KOJIMA_EN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-t3-zII">
+                                <rect key="frame" x="8" y="234" width="118" height="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Designer: 70% of my body is made of movies. Here is some goddamn filler text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJy-9e-xEZ">
+                                <rect key="frame" x="8" y="257" width="304" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPd-fa-Tph">
+                                <rect key="frame" x="8" y="294" width="16" height="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRP-PK-gqH">
+                                <rect key="frame" x="26" y="295" width="55" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eq4-li-2Sn">
+                                <rect key="frame" x="183" y="295" width="56" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12,532,123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1F-8T-Pjq">
+                                <rect key="frame" x="210" y="177" width="62" height="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWEETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlX-1b-XqM">
+                                <rect key="frame" x="274" y="178" width="38" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,500,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-c7-NrN">
+                                <rect key="frame" x="123" y="294" width="58" height="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vlX-1b-XqM" secondAttribute="trailing" constant="8" id="0ej-RA-wFC"/>
+                            <constraint firstItem="f5Z-ET-a5t" firstAttribute="top" secondItem="Var-KH-iCz" secondAttribute="bottom" constant="69" id="2V4-iy-1Zx"/>
+                            <constraint firstItem="JRP-PK-gqH" firstAttribute="leading" secondItem="qPd-fa-Tph" secondAttribute="trailing" constant="2" id="4zx-Dg-jdg"/>
+                            <constraint firstItem="vlX-1b-XqM" firstAttribute="baseline" secondItem="u1F-8T-Pjq" secondAttribute="baseline" id="7iV-Nf-SQs"/>
+                            <constraint firstItem="vlX-1b-XqM" firstAttribute="top" secondItem="4or-cp-CRe" secondAttribute="bottom" constant="8" id="9c1-f9-oFZ"/>
+                            <constraint firstItem="kbr-t3-zII" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" constant="8" id="F0f-dT-8yP"/>
+                            <constraint firstItem="kcz-rN-yah" firstAttribute="top" secondItem="f5Z-ET-a5t" secondAttribute="bottom" constant="8" id="HJf-aw-KGG"/>
+                            <constraint firstItem="JRP-PK-gqH" firstAttribute="baseline" secondItem="qPd-fa-Tph" secondAttribute="baseline" id="MmK-42-V3G"/>
+                            <constraint firstItem="bJy-9e-xEZ" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" constant="8" id="QGa-hK-BXp"/>
+                            <constraint firstItem="qPd-fa-Tph" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" constant="8" id="Sqs-6v-UEg"/>
+                            <constraint firstItem="U6n-c7-NrN" firstAttribute="baseline" secondItem="qPd-fa-Tph" secondAttribute="baseline" id="TuC-z9-EU9"/>
+                            <constraint firstItem="f5Z-ET-a5t" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" constant="8" id="Uhs-kW-Lqn"/>
+                            <constraint firstItem="bJy-9e-xEZ" firstAttribute="top" secondItem="kbr-t3-zII" secondAttribute="bottom" constant="8" id="d78-sX-YAb"/>
+                            <constraint firstItem="U6n-c7-NrN" firstAttribute="leading" secondItem="JRP-PK-gqH" secondAttribute="trailing" constant="42" id="dsr-Jg-Ed0"/>
+                            <constraint firstItem="Eq4-li-2Sn" firstAttribute="leading" secondItem="U6n-c7-NrN" secondAttribute="trailing" constant="2" id="gvf-KE-3do"/>
+                            <constraint firstAttribute="trailing" secondItem="4or-cp-CRe" secondAttribute="trailing" id="mVy-7p-BGN"/>
+                            <constraint firstItem="kbr-t3-zII" firstAttribute="top" secondItem="kcz-rN-yah" secondAttribute="bottom" constant="4" id="n95-YI-yTd"/>
+                            <constraint firstItem="kcz-rN-yah" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" constant="8" id="owE-c5-ObS"/>
+                            <constraint firstItem="qPd-fa-Tph" firstAttribute="top" secondItem="bJy-9e-xEZ" secondAttribute="bottom" constant="8" id="sUG-IZ-20a"/>
+                            <constraint firstItem="4or-cp-CRe" firstAttribute="top" secondItem="Var-KH-iCz" secondAttribute="bottom" id="u8M-89-jgW"/>
+                            <constraint firstItem="vlX-1b-XqM" firstAttribute="leading" secondItem="u1F-8T-Pjq" secondAttribute="trailing" constant="2" id="ukG-74-Jog"/>
+                            <constraint firstItem="4or-cp-CRe" firstAttribute="leading" secondItem="E4g-5D-pfs" secondAttribute="leading" id="vz8-04-cuC"/>
+                            <constraint firstAttribute="trailing" secondItem="bJy-9e-xEZ" secondAttribute="trailing" constant="8" id="wGO-tU-8qh"/>
+                            <constraint firstItem="Eq4-li-2Sn" firstAttribute="baseline" secondItem="qPd-fa-Tph" secondAttribute="baseline" id="xb6-bt-mQq"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile Detail" id="CCv-Hn-xhV"/>
+                    <navigationItem key="navigationItem" id="CCv-Hn-xhV"/>
+                    <connections>
+                        <outlet property="headerImage" destination="4or-cp-CRe" id="DQA-rw-8oW"/>
+                        <outlet property="numFollowers" destination="U6n-c7-NrN" id="TSZ-kL-m0q"/>
+                        <outlet property="numFollowing" destination="qPd-fa-Tph" id="dVW-T1-GO2"/>
+                        <outlet property="numTweets" destination="u1F-8T-Pjq" id="mrH-pJ-WIa"/>
+                        <outlet property="profileDescription" destination="bJy-9e-xEZ" id="hRJ-ir-GEC"/>
+                        <outlet property="profileImage" destination="o1M-3p-drB" id="Ob9-yS-ZSq"/>
+                        <outlet property="profileImageContainer" destination="f5Z-ET-a5t" id="JUT-df-Dkh"/>
+                        <outlet property="userHandle" destination="kbr-t3-zII" id="pPY-eO-XaQ"/>
+                        <outlet property="username" destination="kcz-rN-yah" id="zQQ-wi-e4S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6O-Vu-J7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -449,7 +567,7 @@
                         <outlet property="tweetContent" destination="cMA-4c-OQG" id="woh-Yy-PgR"/>
                         <outlet property="userHandle" destination="H7l-5y-vWz" id="W9O-Oa-8AA"/>
                         <outlet property="username" destination="fvh-Ig-IcR" id="Ofd-Kb-dat"/>
-                        <segue destination="llc-b7-BUm" kind="push" id="72c-dH-2By"/>
+                        <segue destination="llc-b7-BUm" kind="push" identifier="ProfileDetailSegue" id="72c-dH-2By"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="914-UQ-kbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
