@@ -23,6 +23,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var likeImage: UIImageView!
     
+    let tapProfileDetail = UITapGestureRecognizer()
     let tapRetweet = UITapGestureRecognizer()
     let tapLike = UITapGestureRecognizer()
     
@@ -34,6 +35,10 @@ class TweetDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         profileImage.layer.cornerRadius = 8.0
         profileImage.clipsToBounds = true
+        
+        tapProfileDetail.addTarget(self, action: "profileDetailSegue")
+        profileImage.addGestureRecognizer(tapProfileDetail)
+        profileImage.userInteractionEnabled = true
         
         tapRetweet.addTarget(self, action: "retweet")
         retweetImage.addGestureRecognizer(tapRetweet)
@@ -55,9 +60,17 @@ class TweetDetailViewController: UIViewController {
         profileImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!)!)
         
         let calendar = NSCalendar.currentCalendar()
-        let comp = calendar.components([.Month, .Day, .Year], fromDate: tweet.createdAt!)
+        let comp = calendar.components([.Hour, .Minute, .Month, .Day, .Year], fromDate: tweet.createdAt!)
         
-        timestamp.text = "\(comp.month)/\(comp.day)/\(comp.year)"
+        if (comp.hour == 0) {
+            timestamp.text = "12:\(comp.minute) AM - \(comp.month)/\(comp.day)/\(comp.year)"
+        } else if (comp.hour < 12) {
+            timestamp.text = "\(comp.hour):\(comp.minute) AM - \(comp.month)/\(comp.day)/\(comp.year)"
+        } else if (comp.hour == 12) {
+            timestamp.text = "12:\(comp.minute) PM - \(comp.month)/\(comp.day)/\(comp.year)"
+        } else {
+            timestamp.text = "\(comp.hour % 12):\(comp.minute) PM - \(comp.month)/\(comp.day)/\(comp.year)"
+        }
         
         numRetweets.text = String(tweet.retweets!)
         retweetLabel.text = "Retweets"
@@ -138,7 +151,6 @@ class TweetDetailViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -146,6 +158,5 @@ class TweetDetailViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

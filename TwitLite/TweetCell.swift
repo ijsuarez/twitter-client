@@ -21,6 +21,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var favoriteImage: UIImageView!
     
+    let tapProfileDetail = UITapGestureRecognizer()
     let tapRetweet = UITapGestureRecognizer()
     let tapFavorite = UITapGestureRecognizer()
     
@@ -79,15 +80,24 @@ class TweetCell: UITableViewCell {
         profileImage.layer.cornerRadius = 8.0
         profileImage.clipsToBounds = true
         
+        tapProfileDetail.addTarget(self, action: "profileDetailSegue")
+        profileImage.addGestureRecognizer(tapProfileDetail)
+        profileImage.userInteractionEnabled = true
+        
         tapRetweet.addTarget(self, action: "retweet")
         retweetImage.addGestureRecognizer(tapRetweet)
-        retweetImage.userInteractionEnabled = true;
+        retweetImage.userInteractionEnabled = true
         
         tapFavorite.addTarget(self, action: "favorite")
         favoriteImage.addGestureRecognizer(tapFavorite)
-        favoriteImage.userInteractionEnabled = true;
+        favoriteImage.userInteractionEnabled = true
         
         tweetContent.preferredMaxLayoutWidth = tweetContent.frame.size.width
+    }
+    
+    func profileDetailSegue() {
+        print("hi")
+        NSNotificationCenter.defaultCenter().postNotificationName("profileDetailNotification", object: nil, userInfo: ["user" : tweet.user!])
     }
     
     func retweet() {

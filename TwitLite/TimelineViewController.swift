@@ -19,6 +19,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     
+    let tapProfileDetail = UITapGestureRecognizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,6 +56,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "profileDetailSegue:", name: "profileDetailNotification", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -103,7 +107,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
-
+        
         return cell
     }
     
@@ -140,6 +144,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func profileDetailSegue(notification: NSNotification) {
+        performSegueWithIdentifier("ProfileDetailSegue", sender: notification.userInfo!["user"])
+    }
     
     // MARK: - Navigation
 
@@ -147,12 +154,17 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPathForCell(cell)
-        let tweet = tweets[indexPath!.row]
-        
-        let tweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
-        tweetDetailViewController.tweet = tweet
+        if segue.identifier == "TweetDetailSegue" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets[indexPath!.row]
+            
+            let tweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
+            tweetDetailViewController.tweet = tweet
+        } else if segue.identifier == "ProfileDetailSegue" {
+            let user = sender as! User
+            print(user.name)
+        }
     }
 
 }

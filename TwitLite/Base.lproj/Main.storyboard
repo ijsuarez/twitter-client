@@ -196,7 +196,7 @@
                                             <outlet property="tweetContent" destination="d9S-WE-Ihc" id="iss-Yp-8jF"/>
                                             <outlet property="userHandle" destination="qrA-cI-Yhp" id="b0K-HW-sk4"/>
                                             <outlet property="username" destination="j00-g0-Ds3" id="LVU-ng-n2R"/>
-                                            <segue destination="WGh-PA-5MJ" kind="push" id="uHE-0p-Vta"/>
+                                            <segue destination="WGh-PA-5MJ" kind="push" identifier="TweetDetailSegue" id="uHE-0p-Vta"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -243,13 +243,14 @@
                         <outlet property="tableView" destination="pFf-lL-cPa" id="Uso-E3-BxM"/>
                         <outlet property="userImage" destination="Sdn-wK-8O0" id="x50-8D-NIB"/>
                         <outlet property="userImageBorder" destination="ain-wm-ZXF" id="wcE-A9-559"/>
+                        <segue destination="llc-b7-BUm" kind="push" identifier="ProfileDetailSegue" id="w9n-S2-iRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eG-i1-2TB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1093" y="396"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile Detail-->
         <scene sceneID="4ag-QQ-wjm">
             <objects>
                 <viewController id="llc-b7-BUm" sceneMemberID="viewController">
@@ -262,6 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Profile Detail" id="CCv-Hn-xhV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6O-Vu-J7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -447,6 +449,7 @@
                         <outlet property="tweetContent" destination="cMA-4c-OQG" id="woh-Yy-PgR"/>
                         <outlet property="userHandle" destination="H7l-5y-vWz" id="W9O-Oa-8AA"/>
                         <outlet property="username" destination="fvh-Ig-IcR" id="Ofd-Kb-dat"/>
+                        <segue destination="llc-b7-BUm" kind="push" id="72c-dH-2By"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="914-UQ-kbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -478,4 +481,7 @@
         <image name="RetweetIcon" width="24" height="24"/>
         <image name="TwitterLogo" width="562" height="562"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="72c-dH-2By"/>
+    </inferredMetricsTieBreakers>
 </document>
