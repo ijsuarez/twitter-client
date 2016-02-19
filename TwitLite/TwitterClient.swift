@@ -24,15 +24,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         return Static.instance
     }
     
-    func tweetWithTextAndReply(text: String, reply_id: Int?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
-        var postString: String!
-        if reply_id == nil {
-            postString = "status=\(text)"
-        } else {
-            postString = "status=\(text)&in_reply_to_status_id=\(String(reply_id!))"
-        }
-        
-        POST("1.1/statuses/update.json?\(postString)", parameters: nil, progress: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+    func tweetWithParams(params: NSDictionary!, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/statuses/update.json", parameters: params, progress: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             print("successful tweet")
             let tweet = Tweet(dictionary: response as! NSDictionary)
             completion(tweet: tweet, error: nil)

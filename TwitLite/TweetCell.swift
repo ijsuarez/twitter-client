@@ -18,12 +18,16 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
     
+    @IBOutlet weak var replyImage: UIImageView!
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var favoriteImage: UIImageView!
     
     let tapProfileDetail = UITapGestureRecognizer()
+    let tapReply = UITapGestureRecognizer()
     let tapRetweet = UITapGestureRecognizer()
     let tapFavorite = UITapGestureRecognizer()
+    
+    let currentUser = User.currentUser
     
     var tweet : Tweet! {
         didSet {
@@ -84,6 +88,10 @@ class TweetCell: UITableViewCell {
         profileImage.addGestureRecognizer(tapProfileDetail)
         profileImage.userInteractionEnabled = true
         
+        tapReply.addTarget(self, action: "replySegue")
+        replyImage.addGestureRecognizer(tapReply)
+        replyImage.userInteractionEnabled = true
+        
         tapRetweet.addTarget(self, action: "retweet")
         retweetImage.addGestureRecognizer(tapRetweet)
         retweetImage.userInteractionEnabled = true
@@ -99,8 +107,12 @@ class TweetCell: UITableViewCell {
         NSNotificationCenter.defaultCenter().postNotificationName("profileDetailNotification", object: nil, userInfo: ["user" : tweet.user!])
     }
     
+    func replySegue() {
+        NSNotificationCenter.defaultCenter().postNotificationName("replyNotification", object: nil, userInfo: ["reply_tweet" : tweet])
+    }
+    
     func retweet() {
-        if (tweet.isRetweeted != nil && !tweet.isRetweeted!) {
+        if (tweet.isRetweeted != nil && !tweet.isRetweeted! && tweet.user!.name != currentUser!.name) {
             TwitterClient.sharedInstance.retweetWithTweetId(tweet.id!, completion: { (tweet, error) -> () in
                 let tempTweet = self.tweet
                 tempTweet.retweets!++

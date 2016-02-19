@@ -58,6 +58,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.contentInset = insets
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "profileDetailSegue:", name: "profileDetailNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "replySegue:", name: "replyNotification", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTweets:", name: "newTweet", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -148,6 +151,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         performSegueWithIdentifier("ProfileDetailSegue", sender: notification.userInfo!["user"])
     }
     
+    func replySegue(notification: NSNotification) {
+        performSegueWithIdentifier("ComposeSegue", sender: notification.userInfo!["reply_tweet"])
+    }
+    
+    func updateTweets(notification: NSNotification) {
+        let newTweet = notification.userInfo!["new_tweet"] as! Tweet
+        tweets.insert(newTweet, atIndex: 0)
+        tableView.reloadData()
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -165,6 +178,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             let user = sender as! User
             let profileDetailViewController = segue.destinationViewController as! ProfileDetailViewController
             profileDetailViewController.user = user
+        } else if segue.identifier == "ComposeSegue" {
+            if let replyTweet = sender as? Tweet {
+                let composeViewController = segue.destinationViewController as! ComposeViewController
+                composeViewController.replyTo = replyTweet
+            }
         }
     }
 

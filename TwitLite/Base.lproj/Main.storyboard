@@ -190,6 +190,7 @@
                                             <outlet property="favoriteCount" destination="cNa-Ml-HEg" id="LPp-fp-G0H"/>
                                             <outlet property="favoriteImage" destination="fgj-sD-7U4" id="bhk-wg-4t4"/>
                                             <outlet property="profileImage" destination="QN6-O1-HXg" id="KqI-gy-Gh1"/>
+                                            <outlet property="replyImage" destination="zcL-d1-6XX" id="68p-JO-HXb"/>
                                             <outlet property="retweetCount" destination="ijL-mR-aej" id="hPL-VM-ZtJ"/>
                                             <outlet property="retweetImage" destination="iSq-5Y-ICU" id="QRa-h0-1Nq"/>
                                             <outlet property="timestamp" destination="0Xn-1m-NbM" id="mfr-HX-u8X"/>
@@ -366,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6O-Vu-J7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="396"/>
+            <point key="canvasLocation" x="2064" y="-32"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="Vdm-J9-mwf">
@@ -466,7 +467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1c-gf-jBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="1140"/>
+            <point key="canvasLocation" x="1210" y="1206"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="ZvJ-n0-aY6">
@@ -631,11 +632,12 @@
                         <outlet property="userHandle" destination="H7l-5y-vWz" id="W9O-Oa-8AA"/>
                         <outlet property="username" destination="fvh-Ig-IcR" id="Ofd-Kb-dat"/>
                         <segue destination="llc-b7-BUm" kind="push" identifier="ProfileDetailSegue" id="72c-dH-2By"/>
+                        <segue destination="Zdm-BD-Hlz" kind="modal" identifier="ReplySegue" id="L6a-FR-Age"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="914-UQ-kbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="-348"/>
+            <point key="canvasLocation" x="1646" y="604"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="62Q-C3-DUw">
@@ -666,5 +668,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="w9n-S2-iRy"/>
+        <segue reference="L6a-FR-Age"/>
     </inferredMetricsTieBreakers>
 </document>

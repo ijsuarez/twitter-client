@@ -24,6 +24,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var likeImage: UIImageView!
     
     let tapProfileDetail = UITapGestureRecognizer()
+    let tapReply = UITapGestureRecognizer()
     let tapRetweet = UITapGestureRecognizer()
     let tapLike = UITapGestureRecognizer()
     
@@ -39,6 +40,10 @@ class TweetDetailViewController: UIViewController {
         tapProfileDetail.addTarget(self, action: "profileDetailSegue")
         profileImage.addGestureRecognizer(tapProfileDetail)
         profileImage.userInteractionEnabled = true
+        
+        tapReply.addTarget(self, action: "replySegue")
+        replyImage.addGestureRecognizer(tapReply)
+        replyImage.userInteractionEnabled = true
         
         tapRetweet.addTarget(self, action: "retweet")
         retweetImage.addGestureRecognizer(tapRetweet)
@@ -108,6 +113,10 @@ class TweetDetailViewController: UIViewController {
         performSegueWithIdentifier("ProfileDetailSegue", sender: tweet.user)
     }
     
+    func replySegue() {
+        performSegueWithIdentifier("ReplySegue", sender: tweet)
+    }
+    
     func retweet() {
         if (tweet.isRetweeted != nil && !tweet.isRetweeted!) {
             TwitterClient.sharedInstance.retweetWithTweetId(tweet.id!, completion: { (tweet, error) -> () in
@@ -161,9 +170,15 @@ class TweetDetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let user = sender as! User
-        let profileDetailViewController = segue.destinationViewController as! ProfileDetailViewController
-        profileDetailViewController.user = user
+        if segue.identifier == "ProfileDetailSegue" {
+            let user = sender as! User
+            let profileDetailViewController = segue.destinationViewController as! ProfileDetailViewController
+            profileDetailViewController.user = user
+        } else if segue.identifier == "ReplySegue" {
+            let tweet = sender as! Tweet
+            let composeViewController = segue.destinationViewController as! ComposeViewController
+            composeViewController.replyTo = tweet
+        }
     }
 
 }

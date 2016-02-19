@@ -16,8 +16,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var numChars: UILabel!
     
-    var user: User!
     var replyTo: Tweet?
+    
     let maxChars = 140
     
     override func viewDidLoad() {
@@ -32,7 +32,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
         if replyTo != nil {
             placeholderText.hidden = true
+            textView.text = "@\(replyTo!.user!.screenname!): "
+            numChars.text = "\(maxChars - textView.text.characters.count)"
         }
+        
+        let currentUser = User.currentUser!
+        profileImage.setImageWithURL(NSURL(string: currentUser.profileImageUrl!)!)
+        profileImage.layer.cornerRadius = 8.0
+        profileImage.clipsToBounds = true
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -76,6 +83,17 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onTweet(sender: AnyObject) {
+        var params = [String : AnyObject]()
+        params["status"] = textView.text
+
+        if replyTo != nil {
+            params["in_reply_to_status_id"] = replyTo!.id!
+        }
+        
+        TwitterClient.sharedInstance.tweetWithParams(params as NSDictionary) { (tweet, error) -> () in
+            NSNotificationCenter.defaultCenter().postNotificationName("newTweet", object: nil, userInfo: ["new_tweet" : tweet!])
+        }
+        
         self.dismissViewControllerAnimated(true) { () -> Void in
             print("dismiss from tweet")
         }
@@ -87,7 +105,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -95,6 +113,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
