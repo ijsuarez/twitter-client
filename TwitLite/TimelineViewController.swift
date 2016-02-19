@@ -12,8 +12,8 @@ import AFNetworking
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userImageBorder: UIView!
+    //@IBOutlet weak var userImage: UIImageView!
+    //@IBOutlet weak var userImageBorder: UIView!
     
     var tweets: [Tweet]!
     var isMoreDataLoading = false
@@ -38,11 +38,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let currentUser = User.currentUser
         print(currentUser?.profileImageUrl)
         
-        userImage.setImageWithURL(NSURL(string: currentUser!.profileImageUrl!)!)
+        /*userImage.setImageWithURL(NSURL(string: currentUser!.profileImageUrl!)!)
         userImage.layer.cornerRadius = 8.0
         userImage.clipsToBounds = true
         userImageBorder.layer.cornerRadius = 8.0
-        userImageBorder.clipsToBounds = true
+        userImageBorder.clipsToBounds = true*/
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)

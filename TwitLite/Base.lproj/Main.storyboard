@@ -216,37 +216,37 @@
                                 <action selector="onLogout:" destination="nvb-kE-rzl" id="Bca-YQ-L8V"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="FyL-JK-k8m">
-                            <view key="customView" contentMode="scaleToFill" id="ain-wm-ZXF">
-                                <rect key="frame" x="270" y="5" width="34" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-wK-8O0">
-                                        <rect key="frame" x="2" y="2" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="GfA-pv-CFc"/>
-                                            <constraint firstAttribute="width" constant="30" id="V6a-jZ-Adx"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="Sdn-wK-8O0" firstAttribute="centerY" secondItem="ain-wm-ZXF" secondAttribute="centerY" id="ZNa-S2-O5R"/>
-                                    <constraint firstAttribute="width" constant="34" id="eLH-DV-3iF"/>
-                                    <constraint firstAttribute="height" constant="34" id="jEX-G5-XQY"/>
-                                    <constraint firstItem="Sdn-wK-8O0" firstAttribute="centerX" secondItem="ain-wm-ZXF" secondAttribute="centerX" id="pGM-SP-mEr"/>
-                                </constraints>
-                            </view>
+                        <barButtonItem key="rightBarButtonItem" image="ComposeIcon" id="Z0H-rC-s1r">
+                            <connections>
+                                <segue destination="Zdm-BD-Hlz" kind="modal" identifier="ComposeSegue" id="0D7-1u-mHH"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pFf-lL-cPa" id="Uso-E3-BxM"/>
-                        <outlet property="userImage" destination="Sdn-wK-8O0" id="x50-8D-NIB"/>
-                        <outlet property="userImageBorder" destination="ain-wm-ZXF" id="wcE-A9-559"/>
                         <segue destination="llc-b7-BUm" kind="push" identifier="ProfileDetailSegue" id="w9n-S2-iRy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eG-i1-2TB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xS1-cx-zia">
+                    <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-w9-YjR">
+                            <rect key="frame" x="2" y="2" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="r2S-Ae-kSr"/>
+                                <constraint firstAttribute="width" constant="30" id="vP1-Ze-u8j"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="MQs-w9-YjR" firstAttribute="centerY" secondItem="xS1-cx-zia" secondAttribute="centerY" id="8na-tH-aXd"/>
+                        <constraint firstItem="MQs-w9-YjR" firstAttribute="centerX" secondItem="xS1-cx-zia" secondAttribute="centerX" id="Y0g-ar-5hp"/>
+                        <constraint firstAttribute="height" constant="34" id="f4P-fN-Aaw"/>
+                        <constraint firstAttribute="width" constant="34" id="fAn-UO-yrq"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1093" y="396"/>
         </scene>
@@ -387,10 +387,10 @@
             </objects>
             <point key="canvasLocation" x="1602" y="396"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose View Controller-->
         <scene sceneID="Vdm-J9-mwf">
             <objects>
-                <viewController id="Zdm-BD-Hlz" sceneMemberID="viewController">
+                <viewController id="Zdm-BD-Hlz" customClass="ComposeViewController" customModule="TwitLite" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="obW-PS-oXK"/>
                         <viewControllerLayoutGuide type="bottom" id="WTN-59-NAv"/>
@@ -398,6 +398,31 @@
                     <view key="view" contentMode="scaleToFill" id="8mG-r2-Gf2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twj-z9-aNY">
+                                <rect key="frame" x="8" y="20" width="32" height="32"/>
+                                <state key="normal" title="Button" image="ExitIcon"/>
+                                <connections>
+                                    <action selector="onExit:" destination="Zdm-BD-Hlz" eventType="touchUpInside" id="pyC-74-w7T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g80-Ez-DQN">
+                                <rect key="frame" x="266" y="530" width="42" height="30"/>
+                                <state key="normal" title="Tweet"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9q-Tv-LQr">
+                                <rect key="frame" x="241" y="539" width="17" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iQw-xW-pPR">
+                                <rect key="frame" x="0.0" y="60" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -594,12 +619,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ComposeIcon" width="32" height="32"/>
+        <image name="ExitIcon" width="32" height="32"/>
         <image name="FavoriteIcon" width="24" height="24"/>
         <image name="ReplyIcon" width="32" height="32"/>
         <image name="RetweetIcon" width="24" height="24"/>
         <image name="TwitterLogo" width="562" height="562"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="72c-dH-2By"/>
+        <segue reference="w9n-S2-iRy"/>
     </inferredMetricsTieBreakers>
 </document>
